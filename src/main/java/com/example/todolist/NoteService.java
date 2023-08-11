@@ -51,16 +51,14 @@ public class NoteService {
     }
     public void deleteById(long id){
         int counter = 0;
-        List<Note> newList = new ArrayList<>();
         for (Note item : notes) {
             if (item.getId() != id) {
-                newList.add(item);
+                notes.remove(item);
             } else {
                 counter++;
             }
         }
-        notes.addAll(newList);
-        if (counter==1) {
+        if (notes.size()==counter) {
             throw new IllegalArgumentException();
         }
     }
