@@ -10,7 +10,7 @@ public class NoteService {
 
     public Note add(Note note) {
         Random random = new Random();
-        note.setId(random.nextLong());
+        note.setId(random.nextInt(1000000));
         notes.add(note);
         return note;
     }
@@ -50,15 +50,16 @@ public class NoteService {
         return result;
     }
     public void deleteById(long id){
-        int counter = 0;
+        boolean notIncluded = true;
+        Note note = new Note();
         for (Note item : notes) {
-            if (item.getId() != id) {
-                notes.remove(item);
-            } else {
-                counter++;
+            if (item.getId() == id) {
+                notIncluded = false;
+                note = item;
             }
         }
-        if (notes.size()==counter) {
+        notes.remove(note);
+        if (notIncluded) {
             throw new IllegalArgumentException();
         }
     }
