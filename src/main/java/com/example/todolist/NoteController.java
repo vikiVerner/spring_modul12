@@ -3,14 +3,13 @@ package com.example.todolist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RequestMapping(value="/note")
 @RestController
 public class NoteController {
-  private NoteService noteService;
+    private NoteService noteService;
     @Autowired
     public void SetNoteService(NoteService noteService) {
         this.noteService = noteService;
@@ -18,7 +17,7 @@ public class NoteController {
     @GetMapping(value = "/list")
     public ModelAndView listAll() {
         ModelAndView modelAndView = new ModelAndView("list");
-        modelAndView.addObject("notes",noteService.listAll());
+            modelAndView.addObject("notes", noteService.listAll());
             return modelAndView;
     }
 
